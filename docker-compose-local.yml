@@ -1,0 +1,23 @@
+version: "3.7"
+volumes:
+  redis:
+
+# x-extension fields
+x-env_file: &env_file
+  env_file:
+    - ./.env
+networks:
+  autocart:
+    name: autocart-network
+
+services:
+  redis:
+    <<: *env_file
+    image: redis:7.0-alpine
+    container_name: diet-gpt-redis
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis:/data

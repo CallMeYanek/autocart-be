@@ -1,0 +1,6 @@
+fastapi>=0.110.1
+openai
+requests
+redis
+uvicorn
+python-dotenv
